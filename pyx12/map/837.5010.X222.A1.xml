@@ -232,6 +232,7 @@
           <usage>R</usage>
           <seq>08</seq>
           <valid_codes>
+            <code>005010X222</code>
             <code>005010X222A1</code>
           </valid_codes>
         </element>
