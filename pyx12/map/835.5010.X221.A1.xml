@@ -230,6 +230,7 @@
           <usage>R</usage>
           <seq>08</seq>
           <valid_codes>
+            <code>005010X221</code>
             <code>005010X221A1</code>
           </valid_codes>
         </element>
@@ -266,6 +267,7 @@
             <usage>N</usage>
             <seq>03</seq>
             <valid_codes>
+              <code>005010X221</code>
               <code>005010X221A1</code>
             </valid_codes>
           </element>
