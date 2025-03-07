@@ -987,8 +987,11 @@ class segment_if(x12_node):
                 if seg_data.ele_len(ref_des) > subele_count and child_node.usage != 'N':
                     subele_node = child_node.get_child_node_by_idx(
                         subele_count + 1)
-                    err_str = 'Too many sub-elements in composite "%s" (%s)' % \
-                        (subele_node.name, subele_node.refdes)
+                    if subele_node is not None:
+                        err_str = 'Too many sub-elements in composite "%s" (%s)' % \
+                            (subele_node.name, subele_node.refdes)
+                    else:
+                        err_str = 'Too many sub-elements in composite'
                     err_value = seg_data.get_value(ref_des)
                     errh.ele_error('3', err_str, err_value, ref_des)
                 valid &= child_node.is_valid(comp_data, errh)
