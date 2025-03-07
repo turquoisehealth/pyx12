@@ -11,7 +11,6 @@
 """
 Create a XML rendering of the X12 document
 """
-
 from os.path import commonprefix
 import logging
 

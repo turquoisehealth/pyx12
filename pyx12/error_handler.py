@@ -296,7 +296,7 @@ class err_handler(object):
         if bad_value:
             sout += ' (%s)' % (bad_value)
         logger.error(sout)
-        #print self.cur_ele_node.errors
+        #print(self.cur_ele_node.errors)
 
     def close_isa_loop(self, node, seg, src):
         """

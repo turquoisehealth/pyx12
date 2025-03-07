@@ -12,7 +12,6 @@
 Visitor - Visits an error_handler composite
 """
 
-
 class error_visitor(object):
     """
     """

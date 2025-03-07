@@ -1,8 +1,6 @@
-#from os.path import dirname, abspath, join, isdir, isfile
 import unittest
 
 import pyx12.error_handler
-#from pyx12.errors import *
 from pyx12.map_walker import walk_tree, get_id_list, traverse_path, pop_to_parent_loop
 import pyx12.map_if
 import pyx12.params

@@ -13,7 +13,6 @@ Generates a 997 Response
 Visitor - Visits an error_handler composite
 """
 
-#from types import *
 import time
 import logging
 
@@ -277,7 +276,7 @@ class error_997_visitor(error_visitor.error_visitor):
             #seg.append('%s' % err_cde)
         self._write(seg_data)
         #for child in err_gs.children:
-            #print child.cur_line, child.seg
+            #print(child.cur_line, child.seg)
         #logger.info('err_gs has %i children' % len(self.children))
 
         #SE

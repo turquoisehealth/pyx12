@@ -7,7 +7,6 @@
 # *  use PEP 8 style
 
 import sys
-#import codecs
 
 
 class XMLWriter(object):
@@ -63,7 +62,7 @@ class XMLWriter(object):
         self.out = out
         self.stack = []
         self.indent = indent
-        self._write('<?xml version="1.0" encoding="%s"?>\n' % encoding)
+        self._write('<?xml version="1.0" encoding="{}"?>\n'.format(encoding))
 
     def doctype(self, root, pubid, sysid):
         """
@@ -71,11 +70,10 @@ class XMLWriter(object):
         """
         if pubid is None:
             self._write(
-                "<!DOCTYPE %s SYSTEM '%s'>\n" % (root, sysid))
+                "<!DOCTYPE {} SYSTEM '{}'>\n".format(root, sysid))
         else:
             self._write(
-                "<!DOCTYPE %s PUBLIC '%s' '%s'>\n"
-                % (root, pubid, sysid))
+                "<!DOCTYPE {} PUBLIC '{}' '{}'>\n".format(root, pubid, sysid)) 
 
     def push(self, elem, attrs={}):
         """
@@ -83,8 +81,8 @@ class XMLWriter(object):
         """
         self._indent()
         self._write("<" + elem)
-        for (a, v) in list(attrs.items()):
-            self._write(" %s='%s'" % (a, self._escape_attr(v)))
+        for (a, v) in attrs.items():
+            self._write(" {}='{}'".format(a, self._escape_attr(v)))
         self._write(">\n")
         self.stack.append(elem)
 
@@ -94,9 +92,9 @@ class XMLWriter(object):
         """
         self._indent()
         self._write("<" + elem)
-        for (a, v) in list(attrs.items()):
-            self._write(" %s='%s'" % (a, self._escape_attr(v)))
-        self._write(">%s</%s>\n" % (self._escape_cont(content), elem))
+        for (a, v) in attrs.items():
+            self._write(" {}='{}'".format(a, self._escape_attr(v)))
+        self._write(">{}</{}>\n".format(self._escape_cont(content), elem))
 
     def empty(self, elem, attrs={}):
         """
@@ -104,8 +102,8 @@ class XMLWriter(object):
         """
         self._indent()
         self._write("<" + elem)
-        for a in list(attrs.items()):
-            self._write(" %s='%s'" % a)
+        for k, v in attrs.items():
+            self._write(" {attr_name}='{attr_val}'".format(attr_name=k, attr_val=v))
         self.out.write("/>\n")
 
     def pop(self):
@@ -116,7 +114,7 @@ class XMLWriter(object):
             elem = self.stack[-1]
             del self.stack[-1]
             self._indent()
-            self._write("</%s>\n" % elem)
+            self._write("</{elem}>\n".format(elem=elem))
 
     def __len__(self):
         return len(self.stack)

@@ -1,5 +1,5 @@
 ######################################################################
-# Copyright (c) 2001-2011
+# Copyright (c) 2001-2019
 #   John Holland <john@zoner.org>
 # All rights reserved.
 #
@@ -49,7 +49,8 @@ class DataElements(object):
         else:
             logger.debug("Looking for data element definition file '{}' in pkg_resources".format(dataele_file))
             fd = resource_stream(__name__, os.path.join('map', dataele_file))
-        for eElem in et.parse(fd).iter('data_ele'):
+        parser = et.XMLParser(encoding="utf-8")
+        for eElem in et.parse(fd, parser=parser).iter('data_ele'):
             ele_num = eElem.get('ele_num')
             data_type = eElem.get('data_type')
             min_len = int(eElem.get('min_len'))
@@ -74,8 +75,7 @@ class DataElements(object):
         return self.dataele[ele_num]
 
     def __repr__(self):
-        for ele_num in list(self.dataele.keys()):
-            print((self.dataele[ele_num]))
+        print([v for k,v in self.dataele.items()])
 
     def debug_print(self):
         """

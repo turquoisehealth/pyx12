@@ -7,11 +7,9 @@
 # you should have received as part of this distribution.
 #
 ######################################################################
-
 """
 Create an X12 document from a XML data file in the simple form
 """
-
 import xml.etree.cElementTree as et
 import logging
 
@@ -30,7 +28,8 @@ def convert(filename, fd_out):
     """
     logger = logging.getLogger('pyx12')
     wr = pyx12.x12file.X12Writer(fd_out, '~', '*', ':', '\n', '^')
-    doc = et.parse(filename)
+    parser = et.XMLParser(encoding="utf-8")
+    doc = et.parse(filename, parser=parser)
     for node in doc.iter():
         if node.tag == 'seg':
             wr.Write(get_segment(node))

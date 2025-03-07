@@ -22,7 +22,7 @@ def memoize(obj):
     @functools.wraps(obj)
     def memoizer(*args, **kwargs):
         if kwargs:  # frozenset is used to ensure hashability
-            key = args, frozenset(kwargs.iteritems())
+            key = args, frozenset(kwargs.items())
         else:
             key = args
         if key not in cache:

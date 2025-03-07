@@ -1,9 +1,5 @@
 import unittest
-#import tempfile
-try:
-    from StringIO import StringIO
-except:
-    from io import StringIO
+from io import StringIO
 
 import pyx12.error_handler
 from pyx12.errors import EngineError  # , X12PathError
